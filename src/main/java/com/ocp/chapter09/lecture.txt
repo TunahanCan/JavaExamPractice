@@ -1,0 +1,270 @@
+Collections -> tüm koleksiyon sınıflarının temel arayüzü
+List-> sıralı eleman içerir ve indeksleme yapabilir ve elemanlar tekrar edebilir
+Set -> Benzersiz elemanlar içerir tekrarar izin vermez
+Queue-> sirali veri yapısııdır genelde fifo olarak çalışır
+Map-> anahtar deger çiflerine gçre çalışır ve aynı anahtar birden fazla kullanıma izin vermez
+
+
+List Arayüzü uygulamları
+
+List Arayüzü alt sınıfları
+ Arraylist =>  dinamik olarak yapılandılan bir dizi yapısı
+    elemanların eklenmesi ve çıkartılması çok hızlı
+    siralı erişimde hızlı ancak ortaki eleman eklelmek da silmek isteiğdimde maliyetli
+
+ LinkedList => ikili bağlı liste her zaman bir önceki ve bir sonraki işaret eder
+                eleman eklemek yada çıkarmak baştan ve sondan çok hılzı
+                rastgele erişim daha yavaş
+
+ Vector(ThreadSafe)
+          = ARRAYliste  benzer ama thread safe bir yapıdadır yani aynı anda birden
+          fazla iş paraçğı vector üzerinde işlem yapabilir
+
+         = vectorde bütün metodlar synchorinized bu da aynı anda birden fazla iş parçaçğı güvenli
+         bir şekilde erişmesine izin veriri
+
+CopyOnWriteArrayList (Thread Safe)
+       çok iş parçaçğı ortamlarda kullanılan thread-safe bir arraylist dir
+       eleman ekleme yada çıkarma işlemi sırasında koleksiyonnun bir kopyası oluşturulur
+       daha fazla okuma , daha az yazma işlemi olan duurmlarda uygudur
+
+
+
+Set arayüzü uygulamları bu arayüz benzersiz elemanlar içerir
+
+HashSet
+        = elemanları hashcode ve equeals metoduna göre depolar
+        = sıralama garantisi yoktur
+        = eleman ekleme silme ve arama işlemi oldukca hızlıdır
+
+LinkedHashSet
+       = hashsete benzer ancak elemanların sırası korunur
+       = eleman ekleme ve silme işlemi sırasıyla yapılır sıra korunur
+
+TreeSet
+      = elemanları doğal sıralama veya belirli bir comprator ile sıralar
+      = sıralı veri yapısı gerektiren durumlarda kullanılır
+      = null degeri kabul etmez
+
+ConcurrentSkipListSet (Thread Safe)
+      = thread safe bir set implementasyonudur
+      = treeset gibi sıralı elemanlar içerir ve çok iş parçaçıklı ortamlarda kullanılır
+
+
+Queeq arayüzü uygulamaları
+    Quequ arayüzü elemanları belirlir bir sıraya göre işler gnelikle fifo mantıgına göre çalışıor
+
+PriorityQueue
+    = elemanları doğal sıralamasına göre yada sağlanan comparator sınıfına göre sıralar
+    = genelikle en yüksek önceliğie sahip elemannın önce işlenmesi gereken durumlarda kullanılır
+
+ArrayQueue
+    = cift uclu kuyruk olarak çalışır
+    = elemanlar hem başa hem sona eklenebilir
+
+
+ConcurrentLinkedQueue  (thread safe)
+   = thread safe bir qeue implementasyonudur
+   = çok iş parçacılıklı ortamlarda kullanılmak üzere optimize edilmiştir
+
+
+Map Arayüzü uygulamaları  anahtar-deger çiftlerini depolar aynı anahtarlarla birden fazla giriş yapılmaz
+
+HashMap
+   = anahtarları sırasız tutar
+   = hashcode ve equeals sınıflarını kullanarak anahtarlarını yönetir
+
+LinkedHashMap
+    = anahtarları ekleme sırasına göre tutar
+    = hashmape benzer ancak sıralaması yoktur
+
+TreeMap
+   Anahtarları sıralı tutar.
+   Doğal sıralama ya da Comparator ile çalışır.
+
+
+ConcurrentHashMap (Thread-Safe)
+Çok iş parçacıklı ortamlarda kullanılan thread-safe bir Map implementasyonudur.
+HashMap'ten farklı olarak, aynı anda birçok iş parçacığı put() ve get() metotlarını kullanabilir.
+
+
+
+Java Koleksiyonları ve Generics konusu, Java'nın çok kullanılan ve güçlü bir parçasıdır. Java Collections Framework (Koleksiyonlar Çatısı), nesneleri depolamak, düzenlemek ve manipüle etmek için kullanılır. Ayrıca, bu koleksiyonları tür güvenli hale getirmek ve hatalardan korunmak için generics (jenerikler) kullanılır. Şimdi Java Collections Framework’teki tüm yapıları detaylıca ele alalım, thread-safe (iş parçacığı güvenli) olan yapıları da dahil ederek açıklayalım.
+
+1. Java Collections Framework
+Java Collections Framework, java.util paketinde yer alır ve farklı veri yapıları ile çalışmayı sağlar. Koleksiyonlar, belirli türdeki nesneleri gruplar halinde tutar ve işlemler yapmamıza olanak tanır. Başlıca arayüzler şunlardır:
+
+Collection: Tüm koleksiyon sınıflarının temel arayüzü.
+List: Sıralı elemanlar içerir, indeksleme yapılabilir ve elemanlar tekrar edebilir.
+Set: Benzersiz elemanlar içerir, tekrarlara izin vermez.
+Queue: Sıralı bir veri yapısıdır ve genellikle FIFO (First In, First Out) sıralama kurallarına göre çalışır.
+Map: Anahtar-değer çiftleri ile çalışır ve aynı anahtarı birden fazla kez kullanmaya izin vermez.
+2. List Arayüzü ve Uygulamaları
+List arayüzü sıralı bir koleksiyon sağlar. Aynı elemandan birden fazla içerebilir ve indekse dayalı eleman erişimine izin verir.
+
+2.1 ArrayList
+Dinamik olarak boyutlandırılabilen bir dizi yapısıdır.
+Elemanların eklenmesi ve silinmesi çok hızlıdır.
+Sıralı erişimde hızlıdır, ancak ortadaki bir elemanı eklemek ya da silmek maliyetlidir.
+java
+Kodu kopyala
+List<String> list = new ArrayList<>();
+list.add("Java");
+list.add("Python");
+list.get(0); // "Java"
+2.2 LinkedList
+İkili bağlı liste (doubly linked list) yapısını kullanır. Her eleman bir sonrakine ve öncekine işaret eder.
+Eleman eklemek ve çıkarmak (özellikle baştan ve sondan) hızlıdır.
+Ancak, rastgele erişim daha yavaştır.
+java
+Kodu kopyala
+List<String> list = new LinkedList<>();
+list.add("Java");
+list.remove(0);
+2.3 Vector (Thread-Safe)
+Vector, ArrayList'e benzerdir, ancak thread-safe bir yapı sunar. Yani, aynı anda birden fazla iş parçacığı (thread) Vector üzerinde işlem yapabilir.
+Vector'da tüm metotlar senkronizedir (synchronized), bu da aynı anda birden fazla iş parçacığının güvenli şekilde erişmesine izin verir.
+java
+Kodu kopyala
+List<String> vector = new Vector<>();
+vector.add("Java");
+vector.get(0); // Thread-safe
+2.4 CopyOnWriteArrayList (Thread-Safe)
+Çok iş parçacıklı ortamlarda kullanılan thread-safe bir ArrayList'tir.
+Eleman ekleme ya da çıkarma işlemi sırasında koleksiyonun bir kopyası oluşturulur.
+Daha fazla okuma, daha az yazma işlemi olan durumlar için uygundur.
+java
+Kodu kopyala
+List<String> list = new CopyOnWriteArrayList<>();
+list.add("Java");
+3. Set Arayüzü ve Uygulamaları
+Set arayüzü benzersiz elemanlar içerir. Aynı elemandan birden fazla eklenemez. Java'da yaygın Set uygulamaları şunlardır:
+
+3.1 HashSet
+Elemanları hashCode() ve equals() metoduna göre depolar.
+Sıralama garantisi yoktur.
+Eleman ekleme, silme ve arama işlemleri oldukça hızlıdır.
+java
+Kodu kopyala
+Set<String> set = new HashSet<>();
+set.add("Java");
+set.add("Java"); // Eklenmez, çünkü tekrara izin vermez
+3.2 LinkedHashSet
+HashSet'e benzer, ancak eklenen elemanların sırasını korur.
+Eleman ekleme ve silme işlemleri sırayla yapılır.
+java
+Kodu kopyala
+Set<String> set = new LinkedHashSet<>();
+set.add("Java");
+set.add("Python"); // Sıra korunur
+3.3 TreeSet
+Elemanları doğal sıralama veya belirli bir Comparator ile sıralar.
+Sıralı veri yapısı gerektiren durumlarda kullanılır.
+null değeri kabul etmez.
+java
+Kodu kopyala
+Set<String> set = new TreeSet<>();
+set.add("Java");
+set.add("Python"); // Alfabetik sıraya göre
+3.4 ConcurrentSkipListSet (Thread-Safe)
+Thread-safe bir Set implementasyonudur.
+TreeSet gibi sıralı elemanlar içerir ve çok iş parçacıklı ortamlarda kullanılır.
+java
+Kodu kopyala
+Set<String> set = new ConcurrentSkipListSet<>();
+set.add("Java");
+4. Queue Arayüzü ve Uygulamaları
+Queue arayüzü, elemanları belirli bir sıraya göre işler. Genellikle FIFO (First-In-First-Out) prensibiyle çalışır.
+
+4.1 PriorityQueue
+Elemanları doğal sıralamasına göre ya da sağlanan bir Comparator'a göre sıralar.
+Genellikle en yüksek önceliğe sahip elemanın önce işlenmesi gereken durumlarda kullanılır.
+java
+Kodu kopyala
+Queue<Integer> queue = new PriorityQueue<>();
+queue.add(10);
+queue.add(5);
+queue.poll(); // 5 döner, çünkü en küçük
+4.2 ArrayDeque
+Çift uçlu kuyruk (Deque) olarak çalışır.
+Elemanlar hem başa hem de sona eklenebilir.
+java
+Kodu kopyala
+Deque<String> deque = new ArrayDeque<>();
+deque.addFirst("Java");
+deque.addLast("Python");
+4.3 ConcurrentLinkedQueue (Thread-Safe)
+Thread-safe bir Queue implementasyonudur.
+Çok iş parçacıklı ortamlarda kullanılmak üzere optimize edilmiştir.
+java
+Kodu kopyala
+Queue<String> queue = new ConcurrentLinkedQueue<>();
+queue.offer("Java");
+queue.poll(); // Thread-safe
+5. Map Arayüzü ve Uygulamaları
+Map, anahtar-değer çiftlerini depolar. Aynı anahtarla birden fazla giriş yapılamaz.
+
+5.1 HashMap
+Anahtarları sırasız tutar.
+hashCode() ve equals() metotlarını kullanarak anahtarları yönetir.
+java
+Kodu kopyala
+Map<String, Integer> map = new HashMap<>();
+map.put("Java", 20);
+map.get("Java"); // 20 döner
+5.2 LinkedHashMap
+Anahtarları eklenme sırasına göre tutar.
+HashMap'e benzer, ancak sıralama korur.
+java
+Kodu kopyala
+Map<String, Integer> map = new LinkedHashMap<>();
+map.put("Java", 20);
+map.put("Python", 15); // Eklenme sırasına göre
+5.3 TreeMap
+Anahtarları sıralı tutar.
+Doğal sıralama ya da Comparator ile çalışır.
+java
+Kodu kopyala
+Map<String, Integer> map = new TreeMap<>();
+map.put("Java", 20);
+map.put("Python", 15); // Alfabetik sıraya göre sıralar
+5.4 ConcurrentHashMap (Thread-Safe)
+Çok iş parçacıklı ortamlarda kullanılan thread-safe bir Map implementasyonudur.
+HashMap'ten farklı olarak, aynı anda birçok iş parçacığı put() ve get() metotlarını kullanabilir.
+java
+Kodu kopyala
+Map<String, Integer> map = new ConcurrentHashMap<>();
+map.put("Java", 20);
+map.get("Java"); // Thread-safe
+6. Generics (Jenerikler)
+Java generics, sınıfların, metotların ve koleksiyonların tür bağımsız olarak tanımlanmasını sağlar. Bu, tür hatalarını derleme zamanında yakalamamızı sağlar.
+
+6.1 Jenerik Sınıflar
+Jenerik sınıflar, herhangi bir tür ile çalışabilir.
+
+java
+Kodu kopyala
+public class Box<T> {
+    private T item;
+    public void setItem(T item) { this.item = item; }
+    public T getItem() { return item; }
+}
+Box<String> stringBox = new Box<>();
+stringBox.setItem("Java");
+6.2 Jenerik Metotlar
+Metotlar da jenerik olabilir.
+
+java
+Kodu kopyala
+public <T> void printArray(T[] array) {
+    for (T element : array) {
+        System.out.println(element);
+    }
+}
+7. Thread-Safe (İş Parçacığı Güvenli) Koleksiyonlar
+Thread-safe koleksiyonlar, çok iş parçacıklı ortamlarda veri tutarlılığını korumak için kullanılır. İş parçacıkları arasında çakışma olmadan aynı koleksiyon üzerinde işlem yapmayı sağlarlar. Bazı thread-safe koleksiyonlar şunlardır:
+
+Vector
+CopyOnWriteArrayList
+ConcurrentHashMap
+ConcurrentLinkedQueue
