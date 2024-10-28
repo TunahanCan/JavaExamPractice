@@ -1,6 +1,5 @@
 package com.ocp.chapter01;
 
-import java.time.LocalDate;
 
 public class PoliceBox {
     String color;
@@ -23,11 +22,8 @@ public class PoliceBox {
         System.out.println("Q2=" + q.age);
         System.out.println("P1=" + p.color);
         System.out.println("P2=" + p.age);
-
         int[][] scores = new int[5][];
         Object[][][] cubbies = new Object[3][0][5];
         int[][] java = new int[1][2];
     }
-
-
 }

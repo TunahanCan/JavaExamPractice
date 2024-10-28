@@ -26,5 +26,6 @@ public class ReverseString {
         int k = 3;
         String result = reverseString(str, k);
         System.out.println(result);
+        System.out.println(str.length());
     }
 }
