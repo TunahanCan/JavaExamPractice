@@ -12,7 +12,6 @@ public class Zoo {
 
     public static void main(String[] args) {
         var job = new Thread( ()-> pause() );
-        job.setDaemon(true);
         job.start();
         System.out.println("main thread finished");
     }
