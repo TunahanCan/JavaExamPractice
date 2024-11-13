@@ -1,4 +1,4 @@
-package com.ocp.chapter09._01list;
+package com.ocp.chapter09.bonus._01list;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

@@ -1,4 +1,4 @@
-package com.ocp.chapter09._02set;
+package com.ocp.chapter09.bonus._02set;
 
 
 import java.util.HashSet;

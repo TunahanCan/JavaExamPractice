@@ -25,9 +25,8 @@ public class AvoidConcurrentModificationExceptionExample {
         }
     }
 
-
     public static void main(String[] args) {
-       // testDataWithConcurrentModificationException();
+        testDataWithConcurrentModificationException();
         testDataWithoutConcurrentModificationException();
     }
 }
