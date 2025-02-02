@@ -6,6 +6,5 @@ public class GettingSingleCharacter {
         System.out.println(testString.charAt(0));
         System.out.println(testString.charAt(1));
         System.out.println(testString.charAt(244));
-
     }
 }

@@ -12,5 +12,6 @@ public class AdjustingCaseTest {
 
         System.out.println("ıişüğçö".toUpperCase(Locale.UK));
         System.out.println("ıişüğçö".toUpperCase(new Locale("tr", "TR")));
+        System.out.println();
     }
 }
